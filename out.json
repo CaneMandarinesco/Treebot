@@ -1,0 +1,161 @@
+{
+    "data": {
+        "tree": {
+            "id": 2795529,
+            "treeId": "E8K-8M8",
+            "status": 2,
+            "lat": 15.62442833,
+            "lng": -91.73882573,
+            "location": "San Pedro Necta",
+            "name": "Nespresso Depresso",
+            "timezone": "America/Guatemala",
+            "dayTime": "day",
+            "picture": {
+                "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_3165042",
+                "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_3165042",
+                "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_3165042"
+            },
+            "assignedOn": "2021-02-06T11:12:31.000Z",
+            "user": {
+                "id": 1017862,
+                "slug": "3-m",
+                "title": "3 m",
+                "firstName": "3",
+                "lastName": "m",
+                "avatar": {
+                    "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_297109",
+                    "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_297109",
+                    "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_297109"
+                },
+                "userType": "Private"
+            },
+            "initialUser": {
+                "id": 1017862,
+                "slug": "3-m",
+                "title": "3 m",
+                "firstName": "3",
+                "lastName": "m",
+                "avatar": {
+                    "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_297109",
+                    "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_297109",
+                    "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_297109"
+                },
+                "userType": "Private"
+            },
+            "gift": null,
+            "event": {
+                "id": 41902,
+                "slug": "fratta-del-musicale-liceo",
+                "background": {
+                    "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_558673",
+                    "xlarge": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/xlarge_558673"
+                },
+                "avatar": null,
+                "name": "Fratta del musicale liceo",
+                "published": true,
+                "user": {
+                    "slug": "3-m",
+                    "userType": "Private"
+                }
+            },
+            "tankSize": 55,
+            "specie": {
+                "id": 865,
+                "name": {
+                    "it": "Caffè"
+                },
+                "badges": [
+                    {
+                        "icon": {
+                            "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_498858",
+                            "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_498858"
+                        },
+                        "name": {
+                            "it": "Consumo e vendita"
+                        },
+                        "description": {
+                            "it": "I frutti, i semi e/o le foglie vengono mangiati dalle famiglie dei contadini o venduti nei mercati locali."
+                        }
+                    }
+                ],
+                "nurseryImage": null,
+                "icon": {
+                    "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_428740",
+                    "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_428740",
+                    "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_428740"
+                },
+                "scientificName": {
+                    "name": "Coffea arabica"
+                },
+                "size": "S",
+                "sayDescription": {
+                    "it": "La caffeina è il più famoso tra gli energizzanti naturali."
+                },
+                "sayTitle": {
+                    "it": "Energia"
+                },
+                "co2Capture": {
+                    "it": "<p>Piantando questo albero assorbirai 55 kg di CO<sub>2</sub>, quanta ne produce in media una persona in 4 giorni.</p>"
+                },
+                "whichTree": {
+                    "it": "Il Caffè, dai cui semi si ricava l’omonima bevanda, appartenente alla famiglia delle Rubiaceae. Sebbene ne esistano oltre 100 specie, come ci confermano gli scaffali dei supermercati, le più diffuse sono l'arabica e la robusta. Il caffé rappresenta un'importante fonte di reddito per le comunità locali."
+                },
+                "originator": {
+                    "id": 164025,
+                    "slug": "amka-onlus",
+                    "title": "Amka Onlus",
+                    "firstName": "Amka Onlus",
+                    "avatar": {
+                        "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_1436907",
+                        "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_1436907",
+                        "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_1436907"
+                    },
+                    "nurseryLat": 16.925198,
+                    "nurseryLng": -89.615826,
+                    "location": "Flores",
+                    "timezone": "America/Guatemala",
+                    "dayTime": "day"
+                },
+                "country": {
+                    "slug": "guatemala",
+                    "name": {
+                        "it": "Guatemala"
+                    },
+                    "flag": {
+                        "small": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/small_1331853",
+                        "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_1331853"
+                    },
+                    "identityCardBackground": {
+                        "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_1336683",
+                        "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_1336683",
+                        "xlarge": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/xlarge_1336683"
+                    },
+                    "image": {
+                        "medium": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/medium_1336668",
+                        "large": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/large_1336668",
+                        "xlarge": "https://s3-eu-west-1.amazonaws.com/www-treedom-net/images/xlarge_1336668"
+                    }
+                },
+                "powers": {
+                    "foodsecurityPower": 3,
+                    "co2Power": 2,
+                    "incomePower": 8,
+                    "soilPower": 6
+                }
+            },
+            "limited": null,
+            "coupled": null,
+            "likes": [],
+            "actions": null,
+            "messages": [],
+            "forecast": {
+                "temperature": 74.75,
+                "time": 1614726678,
+                "timezone": "America/Guatemala",
+                "windSpeed": 5.15,
+                "icon": "partly-cloudy-day",
+                "precipIntensity": 0.0023
+            }
+        }
+    }
+}
