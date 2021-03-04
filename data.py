@@ -32,7 +32,7 @@ def get_tree_data(treeId):
     data['assignedName'] = 'Nessuno' if jresp['name'] is None else jresp['name']
     data['location'] = 'Nessuna' if jresp['location'] is None else jresp['location'] 
     data['owner'] = {'name':jresp['user']['title'], 'slug':jresp['user']['slug']}
-    data['forest'] = {'name':jresp['event']['name'], 'slug':jresp['event']['slug']}
+    data['forest'] = None if jresp['event'] is None else {'name':jresp['event']['name'], 'slug':jresp['event']['slug']}
     data['image'] = jresp['specie']['icon']['large'] if jresp['picture'] is None else jresp['picture']['large']
     return data
 
@@ -65,3 +65,11 @@ def create_query_data(op, treeId=''):
     data['op'] = op
     data['treeId'] = treeId
     return json.dumps(data)
+
+def jread(f):
+    with open(f) as _f:
+        return json.load(_f)
+
+def jwrite(d, f):
+    with open(f, 'w') as _f:
+        json.dump(d, _f)

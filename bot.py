@@ -5,7 +5,7 @@ import logging
 import data
 import json
 
-TOKEN='FATTI I CAZZI TUOI'
+TOKEN='1627429131:AAHTgX9vgVh2BxTdPilUK7pfHDWhhtBIeIE'
 updater: tge.Updater = None
 dispatcher: tge.Dispatcher = None
 
@@ -59,19 +59,33 @@ def query_callback(update: tg.Update, context: tge.CallbackContext):
 
     if qdata['op'] == 'show_tree':
         tdata = data.get_tree_data(qdata['treeId'])
+        tdata['notificationsEnabled'] = data.jread('users.json')[str(update.effective_chat.id)][qdata['treeId']]
 
         inline_keyboard_ls = []
         inline_keyboard_ls.append([tg.InlineKeyboardButton(
             text='📱 Pagina web 📱',
             url='https://www.treedom.net/it/user/%s/trees/%s' % (tdata['owner']['slug'], tdata['treeId'])
         )])
+        if tdata['forest'] is not None: 
+            inline_keyboard_ls.append([tg.InlineKeyboardButton(
+                text='🌳 Foresta 🌳',
+                url='https://www.treedom.net/it/user/%s/event/%s' % (tdata['owner']['slug'], tdata['forest']['slug'])
+            )])
+        
+        if tdata['notificationsEnabled']:
+            inline_keyboard_ls.append([tg.InlineKeyboardButton(
+                text='⛔ DISBILITA NOTIFICHE ⛔',
+                callback_data=data.create_query_data('enable_notifications', tdata['treeId'])
+            )])
+        else:
+            inline_keyboard_ls.append([tg.InlineKeyboardButton(
+                text='📩 ABILITA NOTIFICHE 📩',
+                callback_data=data.create_query_data('enable_notifications', tdata['treeId'])
+            )])
+
         inline_keyboard_ls.append([tg.InlineKeyboardButton(
-            text='🌳 Foresta 🌳',
-            url='https://www.treedom.net/it/user/%s/event/%s' % (tdata['owner']['slug'], tdata['forest']['slug'])
-        )])
-        inline_keyboard_ls.append([tg.InlineKeyboardButton(
-            text='📩 NOTIFICHE 📩',
-            callback_data=data.create_query_data('enable_notifications', tdata['treeId'])
+            text='⛔ RIMUOVI ⛔',
+            callback_data=data.create_query_data('remove_tree', tdata['treeId'])
         )])
 
         context.bot.send_photo(
@@ -84,14 +98,63 @@ def query_callback(update: tg.Update, context: tge.CallbackContext):
         )
 
     elif qdata['op'] == 'enable_notifications':
-        pass
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text='Notifiche Abilitate!'
+        )
+
+        userd = data.jread('users.json')
+        userd[str(update.effective_chat.id)][qdata['treeId']] = False
+        data.jwrite(userd, 'users.json')
+
+
+    elif qdata['op'] == 'disable_notifications':
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text='Notifiche Disabilitate!'
+        )
+
+        userd = data.jread('users.json')
+        userd[str(update.effective_chat.id)][qdata['treeId']] = True
+        data.jwrite(userd, 'users.json')
+
+    elif qdata['op'] == 'remove_tree':
+        usersd = data.jread('users.json')
+
+        del usersd[str(update.effective_chat.id)][qdata['treeId']]
+        data.jwrite(usersd, 'users.json')
+        
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="Albero rimosso!"
+        )
 
 def link_callback(update: tg.Update, context: tge.CallbackContext):
     # https://www.treedom.net/it/user/3-m/trees/E8K-8M8?filter=all
-    # https://www.treedom.net/it/user/3-m/event/fratta-del-musicale-liceo/trees/E8K-8M8
+    # https://www.treedom.net/it/user/3-m/event/fratta-del-musicale-liceo/trees/E8K-8M8?filter=all
     link = update.effective_message.text
-    if link.endswith('all'):
-        print(link[len(link)-18:7])
+    treeId = link[len(link)-18:len(link)-11] if link.endswith('all') else link[len(link)-7:] 
+    chat_id = update.effective_chat.id
+
+    usersd = data.jread('users.json')
+
+    if chat_id in usersd.keys():
+        for t in usersd[str(chat_id)]:
+            if t == treeId: 
+                context.bot.send_message(
+                    chat_id=chat_id,
+                    text='L\'albero e\' gia\' stato aggiunto!'
+                )
+                return
+    
+    usersd[str(chat_id)][treeId] = False
+    data.jwrite(usersd, 'users.json')
+
+    context.bot.send_message(
+        chat_id=chat_id,
+        text='*L\'albero e\' stato aggiunto!*',
+        parse_mode='markdown'
+    )
 
 def add_handlers(dispatcher: tg.ext.Dispatcher):
     start_handler = tge.CommandHandler('start', start_callback)
@@ -104,7 +167,7 @@ def add_handlers(dispatcher: tg.ext.Dispatcher):
     dispatcher.add_handler(callback_handler)
 
     link_handler = tge.MessageHandler(
-        filters=[tgFilters.text], 
+        filters=tgFilters.text & (tgFilters.entity(tg.MessageEntity.URL) | tgFilters.entity(tg.MessageEntity.TEXT_LINK)), 
         callback=link_callback
     )
     dispatcher.add_handler(link_handler)
