@@ -41,12 +41,13 @@ def tree_callback(update: tg.Update, context: tge.CallbackContext):
     with open('users.json') as f:
         usersd = json.load(f)
     
-    for t in usersd[str(update.effective_chat.id)]:
-        tdata = data.get_tree_name(t)
-        inline_keyboard_ls.append([tg.InlineKeyboardButton(
-            text= tdata['name'] + ('' if tdata['assignedName'] == None else ' | ' + tdata['assignedName']),
-            callback_data=data.create_query_data('show_tree', t)
-        )])
+    if str(update.effective_chat.id) in usersd:
+        for t in usersd[str(update.effective_chat.id)]:
+            tdata = data.get_tree_name(t)
+            inline_keyboard_ls.append([tg.InlineKeyboardButton(
+                text= tdata['name'] + ('' if tdata['assignedName'] == None else ' | ' + tdata['assignedName']),
+                callback_data=data.create_query_data('show_tree', t)
+            )])
     
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -104,8 +105,9 @@ def query_callback(update: tg.Update, context: tge.CallbackContext):
         )
 
         userd = data.jread('users.json')
-        userd[str(update.effective_chat.id)][qdata['treeId']] = False
+        userd[str(update.effective_chat.id)][qdata['treeId']] = True
         data.jwrite(userd, 'users.json')
+        print('Notifiche abilitate per %s' % qdata['treeId'])
 
 
     elif qdata['op'] == 'disable_notifications':
@@ -115,8 +117,9 @@ def query_callback(update: tg.Update, context: tge.CallbackContext):
         )
 
         userd = data.jread('users.json')
-        userd[str(update.effective_chat.id)][qdata['treeId']] = True
+        userd[str(update.effective_chat.id)][qdata['treeId']] = False
         data.jwrite(userd, 'users.json')
+        print('Notifiche disabilitate per %s' % qdata['treeId'])
 
     elif qdata['op'] == 'remove_tree':
         usersd = data.jread('users.json')
